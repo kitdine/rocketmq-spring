@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	">
+    <bean id="defaultProducer" class="org.jobshen.mq.rocketmq.producer.DefaultProducer" init-method="init" destroy-method="destroy">
+        <constructor-arg name="namesrv" value="master:9876;slave1:9876;slave2:9876" />
+        <constructor-arg name="producerGroupName" value="TestGroup" />
+        <constructor-arg name="instanceName" value="TestProducer" />
+    </bean>
+
+    <bean id="testMessage" class="org.jobshen.mq.rocketmq.messages.TestMessage">
+        <constructor-arg index="0" value="test" />
+        <constructor-arg index="1" value="test" />
+    </bean>
+
+</beans>

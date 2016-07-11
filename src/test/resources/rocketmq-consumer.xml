@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	">
+
+    <bean id="testLintener" class="org.jobshen.mq.rocketmq.listeners.TestListener"></bean> <!--Listener配置-->
+
+    <bean id="defaultConsumer" class="org.jobshen.mq.rocketmq.consumer.DefaultConsumer" init-method="init" destroy-method="destroy">
+        <constructor-arg name="namesrv" value="master:9876;slave1:9876;slave2:9876" />
+        <constructor-arg name="producerGroupName" value="TestGroup" />
+        <constructor-arg name="instanceName" value="TestConsumer" />
+        <constructor-arg name="subscriptionTable">
+            <map>
+                <entry value-ref="testLintener">
+                    <key>
+                        <bean class="org.jobshen.mq.rocketmq.bean.Subscription">
+                            <constructor-arg name="topic" value="test"/>
+                            <constructor-arg name="expression" value="test"/>
+                        </bean>
+                    </key>
+                </entry>
+                <!--更多的订阅添加entry节点即可-->
+            </map>
+        </constructor-arg>
+    </bean>
+</beans>
