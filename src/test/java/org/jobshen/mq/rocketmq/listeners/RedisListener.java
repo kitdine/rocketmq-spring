@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Created on 2016年7月8日
+// Created on 2016年7月25日
 // $Id$
 
 package org.jobshen.mq.rocketmq.listeners;
@@ -21,35 +21,44 @@ package org.jobshen.mq.rocketmq.listeners;
 import com.alibaba.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import com.alibaba.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import com.alibaba.rocketmq.common.message.MessageExt;
-import com.zzjr.mq.rocketmq.bean.Action;
-import com.zzjr.mq.rocketmq.bean.ConsumeContext;
 import com.zzjr.mq.rocketmq.messageLisnters.DefaultConcurrentMessageListener;
-import com.zzjr.mq.rocketmq.messageLisnters.MessageListener;
+
+import org.jobshen.util.RedisService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
- *
+ *  收到消息redis key 原子增加1 手动模拟一定概率失败 返回 ConsumeConcurrentlyStatus.RECONSUME_LATER
  * @author <a href="mailto:shenchenbo@zuozh.com">Shen.Chenbo</a>
  * @version 
  * @since JDK 1.6
- * Created on 2016年7月8日
+ * Created on 2016年7月25日
  * Copyright 2016 ZZJR All Rights Reserved.
  */
-public class TestListener implements MessageListener {
-
+//@Service
+public class RedisListener implements DefaultConcurrentMessageListener {
     
-    private static AtomicInteger count = new AtomicInteger(0);
-    private int n;
+    public static final String KEY = "MSG_SUCCSS";
+    
+    public static final Double Error_Rate = 0.01;
+    
+    @Autowired
+    private RedisService redisService;
 
-
-    public Action consume(final MessageExt message, final ConsumeContext context) {
-        n = count.addAndGet(1);
-        System.out.println("msg : " + n);
-        return Action.CommitMessage;
+    @Override
+    public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
+        Double random = Math.random();
+        if(random.compareTo(Error_Rate) < 0) {
+            return ConsumeConcurrentlyStatus.RECONSUME_LATER;
+        }
+        System.out.println("msgs size : " + msgs.size());
+        for (MessageExt msg : msgs) {
+            redisService.incrementByLongOneStep(KEY);
+            System.out.println("msg : " + new String(msg.getBody()));
+        }
+        return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
     }
-
 
 }

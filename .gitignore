@@ -1,0 +1,11 @@
+/.project
+/.classpath
+/.settings/
+.idea
+.idea/
+/target
+**/jsdoc
+/**/.idea
+*.iml
+/.git/
+/target

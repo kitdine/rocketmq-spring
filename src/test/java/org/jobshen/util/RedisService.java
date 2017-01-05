@@ -13,26 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Created on 2016年7月8日
+// Created on 2016年7月25日
 // $Id$
 
-package org.jobshen.mq.rocketmq.messages;
+package org.jobshen.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
 
-import com.zzjr.mq.rocketmq.message.impl.DefaultMessage;
 
 /**
  *
  * @author <a href="mailto:shenchenbo@zuozh.com">Shen.Chenbo</a>
  * @version 
  * @since JDK 1.6
- * Created on 2016年7月8日
+ * Created on 2016年7月25日
  * Copyright 2016 ZZJR All Rights Reserved.
  */
-public class TestMessage extends DefaultMessage<String> {
+@Service
+public class RedisService {
 
-    public TestMessage(String topic, String tags){
-        super(topic, tags);
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+    
+    public Long incrementByLongWithStep(String key, Long step) {
+        return stringRedisTemplate.opsForValue().increment(key, step);
     }
-
+    
+    public Long incrementByLongOneStep(String key) {
+        return incrementByLongWithStep(key, 1L);
+    }
 }

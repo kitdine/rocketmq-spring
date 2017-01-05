@@ -4,15 +4,17 @@
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 	">
 
-    <bean id="testLintener" class="org.jobshen.mq.rocketmq.listeners.TestListener"></bean> <!--Listener配置-->
+	<import resource="redis.xml"/>
+
+     <bean id="redisListener" class="org.jobshen.mq.rocketmq.listeners.RedisListener"></bean> <!--Listener配置-->
 
     <bean id="defaultConsumer" class="com.zzjr.mq.rocketmq.consumer.DefaultConsumer" init-method="init" destroy-method="destroy">
-        <constructor-arg name="namesrv" value="172.16.2.197:9876;172.16.2.127:9876" />
+        <constructor-arg name="namesrv" value="master:9876;slave1:9876;slave2:9876" />
         <constructor-arg name="producerGroupName" value="TestGroup" />
         <constructor-arg name="instanceName" value="TestConsumer" />
         <constructor-arg name="subscriptionTable">
             <map>
-                <entry value-ref="testLintener">
+                <entry value-ref="redisListener">
                     <key>
                         <bean class="com.zzjr.mq.rocketmq.bean.Subscription">
                             <constructor-arg name="topic" value="test"/>

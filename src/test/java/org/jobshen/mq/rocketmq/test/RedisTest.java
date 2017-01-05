@@ -13,26 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Created on 2016年7月8日
+// Created on 2016年7月25日
 // $Id$
 
-package org.jobshen.mq.rocketmq.messages;
+package org.jobshen.mq.rocketmq.test;
 
+import org.jobshen.util.RedisService;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.zzjr.mq.rocketmq.message.impl.DefaultMessage;
 
 /**
  *
  * @author <a href="mailto:shenchenbo@zuozh.com">Shen.Chenbo</a>
  * @version 
  * @since JDK 1.6
- * Created on 2016年7月8日
+ * Created on 2016年7月25日
  * Copyright 2016 ZZJR All Rights Reserved.
  */
-public class TestMessage extends DefaultMessage<String> {
-
-    public TestMessage(String topic, String tags){
-        super(topic, tags);
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations={"classpath:redis.xml"})
+public class RedisTest {
+    
+    @Autowired
+    private RedisService redisService;
+    
+    @Test
+    public void test() {
+        System.out.println(redisService.incrementByLongOneStep("test"));
     }
 
 }
