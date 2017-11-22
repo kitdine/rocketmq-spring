@@ -1,56 +1,40 @@
+/*
+ * Copyright 2017-2020 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.jobshen.mq.rocketmq.bean;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
- * Subscription 订阅实体类
+ * Subscription Description:    订阅实体类
  *
- * @author <a href="mailto:shenchenbo@zuozh.com">Shen.Chenbo</a>
- * @version 
- * @since JDK 1.6
- * Created on 2016年7月8日
- * Copyright 2016 ZZJR All Rights Reserved.
+ * @author <a href="mailto:kitdnie@gmail.com">Job Shen</a>
+ * @version 1.0
+ * @date 2017/11/22 14:30
+ * @since JDK 1.7
  */
 @Getter
+@AllArgsConstructor
+@EqualsAndHashCode(exclude = {"expression"})
+@ToString
 public class Subscription {
     private final String topic;
     private final String expression;
-    
-    public Subscription(String topic, String expression) {
-        this.topic = topic;
-        this.expression = expression;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((topic == null) ? 0 : topic.hashCode());
-        return result;
-    }
-
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Subscription other = (Subscription) obj;
-        if (topic == null) {
-            if (other.topic != null)
-                return false;
-        } else if (!topic.equals(other.topic))
-            return false;
-        return true;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Subscription [topic=" + topic + ", expression=" + expression + "]";
-    }
 
 }

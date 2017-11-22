@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jobshen.mq</groupId>
 	<artifactId>rocketmq-spring</artifactId>
-	<version>1.0</version>
+	<version>1.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>rocketmq-spring</name>
 
@@ -13,26 +13,18 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
 		<java-version>1.7</java-version>
-		<apache.log4j.version>2.3</apache.log4j.version>
-		<guava-version>18.0</guava-version>
-		<fastjson-version>1.2.6</fastjson-version>
-		<junit-version>4.11</junit-version>
-		<commons.logging.version>1.2</commons.logging.version>
-		<apache.log4j.version>2.3</apache.log4j.version>
-		<commons.codec.version>1.10</commons.codec.version>
-		<fastjson-version>1.2.6</fastjson-version>
-		<org.projectlombok.lombok.version>1.16.4</org.projectlombok.lombok.version>
-		<com.alibaba.rocketmq.version>3.2.6</com.alibaba.rocketmq.version>
-		<commons.lang3.version>3.3.2</commons.lang3.version>
-		<org.springframework-version>4.2.0.RELEASE</org.springframework-version>
+		<apache.log4j.version>2.9.1</apache.log4j.version>
+		<guava-version>23.0</guava-version>
+		<fastjson-version>1.2.41</fastjson-version>
+		<junit-version>4.12</junit-version>
+		<commons.codec.version>1.11</commons.codec.version>
+		<org.projectlombok.lombok.version>1.16.18</org.projectlombok.lombok.version>
+		<com.alibaba.rocketmq.version>4.1.0-incubating</com.alibaba.rocketmq.version>
+		<commons.lang3.version>3.7</commons.lang3.version>
+		<org.springframework.version>4.3.12.RELEASE</org.springframework.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>${commons.logging.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -64,11 +56,6 @@
 			<version>${guava-version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>${commons.lang3.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>com.alibaba.rocketmq</groupId>
 			<artifactId>rocketmq-client</artifactId>
 			<version>${com.alibaba.rocketmq.version}</version>
@@ -77,6 +64,7 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${org.projectlombok.lombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -87,25 +75,25 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
-			<version>${org.springframework-version}</version>
+			<version>${org.springframework.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${org.springframework-version}</version>
+			<version>${org.springframework.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>${org.springframework-version}</version>
+			<version>${org.springframework.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>${org.springframework-version}</version>
+			<version>${org.springframework.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
