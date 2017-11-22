@@ -4,19 +4,40 @@
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 	">
 
-    <bean id="testLintener" class="org.jobshen.mq.rocketmq.listeners.TestListener"></bean> <!--Listener配置-->
+    <bean id="fastjsonSerializer" class="org.jobshen.mq.rocketmq.serialize.json.FastjsonSerializer" />
+    <bean class="org.jobshen.mq.rocketmq.serialize.kryo.DefaultKryoFactory" id="defaultKryoFactory" />
+    <bean id="kryoSerializer" class="org.jobshen.mq.rocketmq.serialize.kryo.KryoSerializer" >
+        <constructor-arg ref="defaultKryoFactory"/>
+    </bean>
 
-    <bean id="defaultConsumer" class="com.zzjr.mq.rocketmq.consumer.DefaultConsumer" init-method="init" destroy-method="destroy">
-        <constructor-arg name="namesrv" value="172.16.2.197:9876;172.16.2.127:9876" />
-        <constructor-arg name="producerGroupName" value="TestGroup" />
+
+    <bean id="singletonPersonMessageListener" class="org.jobshen.mq.rocketmq.test.listeners.SingletonPersonMessageListener">
+        <constructor-arg ref="fastjsonSerializer"/>
+    </bean> <!--Listener配置-->
+
+    <bean id="batchPersonMessageListener" class="org.jobshen.mq.rocketmq.test.listeners.BatchPersonMessageListener">
+        <constructor-arg ref="kryoSerializer" />
+    </bean>
+
+    <bean id="defaultConsumer" class="org.jobshen.mq.rocketmq.consumer.SingletonMessageConsumer" init-method="init" destroy-method="destroy">
+        <constructor-arg name="namesrv" value="127.0.0.1:9876" />
+        <constructor-arg name="consumerGroupName" value="TestGroup" />
         <constructor-arg name="instanceName" value="TestConsumer" />
         <constructor-arg name="subscriptionTable">
             <map>
-                <entry value-ref="testLintener">
+                <entry value-ref="singletonPersonMessageListener">
                     <key>
-                        <bean class="com.zzjr.mq.rocketmq.bean.Subscription">
-                            <constructor-arg name="topic" value="test"/>
-                            <constructor-arg name="expression" value="test"/>
+                        <bean class="org.jobshen.mq.rocketmq.bean.Subscription">
+                            <constructor-arg name="topic" value="singleton"/>
+                            <constructor-arg name="expression" value="*"/>
+                        </bean>
+                    </key>
+                </entry>
+                <entry value-ref="batchPersonMessageListener">
+                    <key>
+                        <bean class="org.jobshen.mq.rocketmq.bean.Subscription">
+                            <constructor-arg name="topic" value="batch"/>
+                            <constructor-arg name="expression" value="*"/>
                         </bean>
                     </key>
                 </entry>
