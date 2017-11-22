@@ -16,10 +16,12 @@
 		<apache.log4j.version>2.9.1</apache.log4j.version>
 		<guava-version>23.0</guava-version>
 		<fastjson-version>1.2.41</fastjson-version>
+		<com.esotericsoftware.kryo.version>4.0.1</com.esotericsoftware.kryo.version>
+		<de.javakaffee.kryo.serializers.version>0.42</de.javakaffee.kryo.serializers.version>
 		<junit-version>4.12</junit-version>
 		<commons.codec.version>1.11</commons.codec.version>
 		<org.projectlombok.lombok.version>1.16.18</org.projectlombok.lombok.version>
-		<com.alibaba.rocketmq.version>4.1.0-incubating</com.alibaba.rocketmq.version>
+		<org.apache.rocketmq.version>4.1.0-incubating</org.apache.rocketmq.version>
 		<commons.lang3.version>3.7</commons.lang3.version>
 		<org.springframework.version>4.3.12.RELEASE</org.springframework.version>
 	</properties>
@@ -41,6 +43,16 @@
 			<version>${fastjson-version}</version>
 		</dependency>
 		<dependency>
+			<groupId>com.esotericsoftware</groupId>
+			<artifactId>kryo</artifactId>
+			<version>${com.esotericsoftware.kryo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>de.javakaffee</groupId>
+			<artifactId>kryo-serializers</artifactId>
+			<version>${de.javakaffee.kryo.serializers.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons.lang3.version}</version>
@@ -56,9 +68,9 @@
 			<version>${guava-version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.alibaba.rocketmq</groupId>
+			<groupId>org.apache.rocketmq</groupId>
 			<artifactId>rocketmq-client</artifactId>
-			<version>${com.alibaba.rocketmq.version}</version>
+			<version>${org.apache.rocketmq.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>

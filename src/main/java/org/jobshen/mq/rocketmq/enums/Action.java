@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jobshen.mq.rocketmq.bean;
+package org.jobshen.mq.rocketmq.enums;
 
 /**
  * Action Description:  消费消息的返回结果

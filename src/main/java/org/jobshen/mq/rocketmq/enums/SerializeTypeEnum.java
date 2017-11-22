@@ -21,33 +21,25 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * ConsumeContext Description:  延迟枚举类
+ * SerializeTypeEnum Description:
  *
  * @author <a href="mailto:kitdnie@gmail.com">Job Shen</a>
  * @version 1.0
- * @date 2017/11/22 14:30
+ * @date 2017/11/22 15:31
  * @since JDK 1.7
  */
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public enum DelayTimeLevel {
-  /**
-   * 延迟1秒
-   */
-  ONE_SECOND(1, 1),
-  /**
-   * 延迟5秒
-   */
-  FIVE_SECOND(2, 2),
-  /**
-   * 延迟10秒
-   */
-  TEN_SECOND(3, 3),
-  /**
-   * 延迟30秒
-   */
-  THITY_SECOND(4, 4);
+public enum SerializeTypeEnum {
 
-  private int key;
-  private int  value;
+    /**
+     * fastjson 序列化
+     */
+    FastJson((byte)1, "fastjson"),
+    /**
+     * kryo 序列化
+     */
+    Kryo((byte)2, "kryo");
+    private byte id;
+    private String type;
 }

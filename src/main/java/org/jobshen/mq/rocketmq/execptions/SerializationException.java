@@ -14,40 +14,34 @@
  * limitations under the License.
  */
 
-package org.jobshen.mq.rocketmq.enums;
-
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+package org.jobshen.mq.rocketmq.execptions;
 
 /**
- * ConsumeContext Description:  延迟枚举类
+ * SerializationException Description: 序列化异常捕获类
  *
  * @author <a href="mailto:kitdnie@gmail.com">Job Shen</a>
  * @version 1.0
- * @date 2017/11/22 14:30
+ * @date 2017/11/22 15:27
  * @since JDK 1.7
  */
-@Getter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-public enum DelayTimeLevel {
-  /**
-   * 延迟1秒
-   */
-  ONE_SECOND(1, 1),
-  /**
-   * 延迟5秒
-   */
-  FIVE_SECOND(2, 2),
-  /**
-   * 延迟10秒
-   */
-  TEN_SECOND(3, 3),
-  /**
-   * 延迟30秒
-   */
-  THITY_SECOND(4, 4);
+public class SerializationException extends RocketMqClientException {
+    /**
+     * Constructs a new <code>SerializationException</code> instance.
+     *
+     * @param msg
+     * @param cause
+     */
+    public SerializationException(String msg, Throwable cause) {
+        super(msg, cause);
+    }
 
-  private int key;
-  private int  value;
+    /**
+     * Constructs a new <code>SerializationException</code> instance.
+     *
+     * @param msg
+     */
+    public SerializationException(String msg) {
+        super(msg);
+    }
+
 }
