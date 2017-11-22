@@ -1,22 +1,36 @@
+/*
+ * Copyright 2017-2020 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.jobshen.mq.rocketmq.producer;
 
-import com.alibaba.rocketmq.client.exception.MQClientException;
-import com.alibaba.rocketmq.client.producer.DefaultMQProducer;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.rocketmq.client.exception.MQClientException;
+import org.apache.rocketmq.client.producer.DefaultMQProducer;
+
+import lombok.extern.log4j.Log4j2;
 
 /**
- * 生产者 bean
+ * DefaultProducer Description:  生产者 bean
  *
- * @author <a href="mailto:shenchenbo@zuozh.com">Shen.Chenbo</a>
- * @version 
- * @since JDK 1.6
- * Created on 2016年7月8日
- * Copyright 2016 ZZJR All Rights Reserved.
+ * @author <a href="mailto:kitdnie@gmail.com">Job Shen</a>
+ * @version 1.0
+ * @date 2017/11/22 14:30
+ * @since JDK 1.7
  */
+@Log4j2
 public class DefaultProducer {
-
-    protected final Logger PRODUCERLOG = LogManager.getLogger("rocketmq-producer-log");
 
     private DefaultMQProducer producer ;
 
@@ -31,7 +45,7 @@ public class DefaultProducer {
     }
 
     public void init() throws MQClientException {
-        PRODUCERLOG.info("start DefaultMQProducer initialize! producerGroupName:{}, namesrv:{}", producerGroupName, namesrv);
+        log.info("start DefaultMQProducer initialize! producerGroupName:{}, namesrv:{}", producerGroupName, namesrv);
 
         producer = new DefaultMQProducer(producerGroupName);
         producer.setNamesrvAddr(namesrv);
@@ -39,15 +53,13 @@ public class DefaultProducer {
 
         producer.start();
 
-        PRODUCERLOG.info("the DefaultMQProducer start success!");
+        log.info("the DefaultMQProducer start success!");
     }
 
     public void destroy() {
-        PRODUCERLOG.info("start DefaultMQProducer shutdown!");
-
+        log.info("start DefaultMQProducer shutdown!");
         producer.shutdown();
-
-        PRODUCERLOG.info("DefaultMQProducer shutdown success!");
+        log.info("DefaultMQProducer shutdown success!");
     }
 
     public DefaultMQProducer getProducer() {
