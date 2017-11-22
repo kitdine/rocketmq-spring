@@ -16,6 +16,9 @@
 
 package org.jobshen.mq.rocketmq.messagelisteners;
 
+import org.apache.rocketmq.common.message.MessageExt;
+import org.jobshen.mq.rocketmq.bean.ConsumeContext;
+
 /**
  * MessageListener Description:
  *
@@ -25,5 +28,7 @@ package org.jobshen.mq.rocketmq.messagelisteners;
  * @since JDK 1.7
  */
 public interface MessageListener {
+
+    String GENERIC_ERROR_FORMAT = "'%s' is not specified generic type parameters!";
 
 }
