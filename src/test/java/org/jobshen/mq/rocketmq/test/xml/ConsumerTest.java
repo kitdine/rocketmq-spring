@@ -1,24 +1,32 @@
-package org.jobshen.mq.rocketmq.test;
+/*
+ * Copyright (c) 2017 the original author or authors.
+ *   National Electronics and Computer Technology Center, Thailand
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import com.google.common.collect.Maps;
+package org.jobshen.mq.rocketmq.test.xml;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.rocketmq.client.exception.MQBrokerException;
-import com.alibaba.rocketmq.client.exception.MQClientException;
-import com.alibaba.rocketmq.remoting.exception.RemotingException;
 
+import org.apache.rocketmq.client.exception.MQBrokerException;
+import org.apache.rocketmq.client.exception.MQClientException;
+import org.apache.rocketmq.remoting.exception.RemotingException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by lenovo on 2016/7/8.
@@ -49,9 +57,9 @@ public class ConsumerTest {
 //        c.put("B", "BB");
 //        c.put("C", "CC");
 //        List<Map<String, String>> all = new ArrayList<>();
-//        List<Map<String, String>> test = Arrays.asList(a, b, c);
-//        all.addAll(test);
-//        all.addAll(test);
+//        List<Map<String, String>> xml = Arrays.asList(a, b, c);
+//        all.addAll(xml);
+//        all.addAll(xml);
 //        System.out.println(JSON.toJSONString(all, SerializerFeature.DisableCircularReferenceDetect));
 	}
 	

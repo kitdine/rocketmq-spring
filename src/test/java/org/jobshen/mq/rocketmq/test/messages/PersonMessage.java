@@ -15,28 +15,23 @@
  * limitations under the License.
  */
 
-package org.jobshen.mq.rocketmq.bean;
+package org.jobshen.mq.rocketmq.test.messages;
 
-import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
-
-import lombok.Getter;
-import lombok.Setter;
+import org.jobshen.mq.rocketmq.message.impl.SerializableDefaultMessage;
+import org.jobshen.mq.rocketmq.test.po.Person;
+import org.jobshen.mq.rocketmq.serialize.RocketMqSerializer;
 
 /**
- * ConsumeContext Description:  每次消费消息的上下文，供将来扩展使用
+ * PersonMessage Description:
  *
  * @author <a href="mailto:kitdnie@gmail.com">Job Shen</a>
  * @version 1.0
- * @date 2017/11/22 14:30
- * @since JDK 1.7
+ * @date 2017/11/22 22:31
+ * @since JDK 1.8
  */
-@Getter
-@Setter
-public class ConsumeContext {
+public class PersonMessage extends SerializableDefaultMessage<Person> {
 
-    private final ConsumeConcurrentlyContext consumeConcurrentlyContext;
-
-    public ConsumeContext(ConsumeConcurrentlyContext consumeConcurrentlyContext) {
-        this.consumeConcurrentlyContext = consumeConcurrentlyContext;
+    public PersonMessage(String topic, String tags, RocketMqSerializer serializer) {
+        super(topic, tags, serializer);
     }
 }
