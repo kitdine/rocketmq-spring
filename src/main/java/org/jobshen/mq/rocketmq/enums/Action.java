@@ -16,38 +16,21 @@
 
 package org.jobshen.mq.rocketmq.enums;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 /**
- * ConsumeContext Description:  延迟枚举类
+ * Action Description:  消费消息的返回结果
  *
  * @author <a href="mailto:kitdnie@gmail.com">Job Shen</a>
- * @version 1.0
- * @date 2017/11/22 14:30
+ * @version 1.1
+ * @date 2017/11/22 14:28
  * @since JDK 1.7
  */
-@Getter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-public enum DelayTimeLevel {
-  /**
-   * 延迟1秒
-   */
-  ONE_SECOND(1, 1),
-  /**
-   * 延迟5秒
-   */
-  FIVE_SECOND(2, 2),
-  /**
-   * 延迟10秒
-   */
-  TEN_SECOND(3, 3),
-  /**
-   * 延迟30秒
-   */
-  THITY_SECOND(4, 4);
-
-  private int key;
-  private int  value;
+public enum Action {
+    /**
+     * 消费成功，继续消费下一条消息
+     */
+    CommitMessage,
+    /**
+     * 消费失败，告知服务器稍后再投递这条消息，继续消费其他消息
+     */
+    ReconsumeLater;
 }

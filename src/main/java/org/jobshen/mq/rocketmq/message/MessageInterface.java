@@ -18,8 +18,8 @@
 
 package org.jobshen.mq.rocketmq.message;
 
-import com.alibaba.rocketmq.common.message.Message;
 
+import org.apache.rocketmq.common.message.Message;
 
 /**
  * 生产者 消息接口
@@ -31,6 +31,19 @@ import com.alibaba.rocketmq.common.message.Message;
  * Copyright 2016 ZZJR All Rights Reserved.
  */
 public interface MessageInterface<T> {
-    
-    public Message getInstance(T t);
+
+    /**
+     * 生成Message 实例
+     * @param t message对象
+     * @return  message
+     */
+    Message getInstance(T t);
+
+    /**
+     * 生成Message 实例
+     * @param t message对象
+     * @param keys message key值
+     * @return  message
+     */
+    Message getInstance(T t, String keys);
 }

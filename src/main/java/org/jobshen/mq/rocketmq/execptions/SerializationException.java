@@ -15,28 +15,34 @@
  * limitations under the License.
  */
 
-package org.jobshen.mq.rocketmq.bean;
-
-import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
-
-import lombok.Getter;
-import lombok.Setter;
+package org.jobshen.mq.rocketmq.execptions;
 
 /**
- * ConsumeContext Description:  每次消费消息的上下文，供将来扩展使用
+ * SerializationException Description: 序列化异常捕获类
  *
  * @author <a href="mailto:kitdnie@gmail.com">Job Shen</a>
  * @version 1.0
- * @date 2017/11/22 14:30
+ * @date 2017/11/22 15:27
  * @since JDK 1.7
  */
-@Getter
-@Setter
-public class ConsumeContext {
-
-    private final ConsumeConcurrentlyContext consumeConcurrentlyContext;
-
-    public ConsumeContext(ConsumeConcurrentlyContext consumeConcurrentlyContext) {
-        this.consumeConcurrentlyContext = consumeConcurrentlyContext;
+public class SerializationException extends RocketMqClientException {
+    /**
+     * Constructs a new <code>SerializationException</code> instance.
+     *
+     * @param msg
+     * @param cause
+     */
+    public SerializationException(String msg, Throwable cause) {
+        super(msg, cause);
     }
+
+    /**
+     * Constructs a new <code>SerializationException</code> instance.
+     *
+     * @param msg
+     */
+    public SerializationException(String msg) {
+        super(msg);
+    }
+
 }

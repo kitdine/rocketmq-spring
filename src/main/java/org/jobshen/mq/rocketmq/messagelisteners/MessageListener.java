@@ -15,28 +15,18 @@
  * limitations under the License.
  */
 
-package org.jobshen.mq.rocketmq.bean;
-
-import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
-
-import lombok.Getter;
-import lombok.Setter;
+package org.jobshen.mq.rocketmq.messagelisteners;
 
 /**
- * ConsumeContext Description:  每次消费消息的上下文，供将来扩展使用
+ * MessageListener Description:
  *
  * @author <a href="mailto:kitdnie@gmail.com">Job Shen</a>
  * @version 1.0
- * @date 2017/11/22 14:30
+ * @date 2017/11/22 17:13
  * @since JDK 1.7
  */
-@Getter
-@Setter
-public class ConsumeContext {
+public interface MessageListener {
 
-    private final ConsumeConcurrentlyContext consumeConcurrentlyContext;
+    String GENERIC_ERROR_FORMAT = "'%s' is not specified generic type parameters!";
 
-    public ConsumeContext(ConsumeConcurrentlyContext consumeConcurrentlyContext) {
-        this.consumeConcurrentlyContext = consumeConcurrentlyContext;
-    }
 }

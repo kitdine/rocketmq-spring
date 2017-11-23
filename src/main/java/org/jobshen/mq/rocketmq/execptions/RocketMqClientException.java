@@ -14,40 +14,31 @@
  * limitations under the License.
  */
 
-package org.jobshen.mq.rocketmq.enums;
+package org.jobshen.mq.rocketmq.execptions;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
- * ConsumeContext Description:  延迟枚举类
+ * RocketMqClientException Description: 通用异常类
  *
  * @author <a href="mailto:kitdnie@gmail.com">Job Shen</a>
  * @version 1.0
- * @date 2017/11/22 14:30
+ * @date 2017/11/22 15:26
  * @since JDK 1.7
  */
-@Getter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-public enum DelayTimeLevel {
-  /**
-   * 延迟1秒
-   */
-  ONE_SECOND(1, 1),
-  /**
-   * 延迟5秒
-   */
-  FIVE_SECOND(2, 2),
-  /**
-   * 延迟10秒
-   */
-  TEN_SECOND(3, 3),
-  /**
-   * 延迟30秒
-   */
-  THITY_SECOND(4, 4);
+@NoArgsConstructor
+public class RocketMqClientException extends RuntimeException {
+    private static final long serialVersionUID = 5755356574640041094L;
 
-  private int key;
-  private int  value;
+    public RocketMqClientException(String message) {
+        super(message);
+    }
+
+    public RocketMqClientException(Throwable cause) {
+        super(cause);
+    }
+
+    public RocketMqClientException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }

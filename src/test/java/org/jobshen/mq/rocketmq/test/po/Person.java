@@ -15,28 +15,21 @@
  * limitations under the License.
  */
 
-package org.jobshen.mq.rocketmq.bean;
+package org.jobshen.mq.rocketmq.test.po;
 
-import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
-
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
- * ConsumeContext Description:  每次消费消息的上下文，供将来扩展使用
+ * Person Description:
  *
  * @author <a href="mailto:kitdnie@gmail.com">Job Shen</a>
  * @version 1.0
- * @date 2017/11/22 14:30
- * @since JDK 1.7
+ * @date 2017/11/22 22:28
+ * @since JDK 1.8
  */
-@Getter
-@Setter
-public class ConsumeContext {
-
-    private final ConsumeConcurrentlyContext consumeConcurrentlyContext;
-
-    public ConsumeContext(ConsumeConcurrentlyContext consumeConcurrentlyContext) {
-        this.consumeConcurrentlyContext = consumeConcurrentlyContext;
-    }
+@Data
+public class Person {
+    private String name;
+    private int age;
+    private char sex;
 }
