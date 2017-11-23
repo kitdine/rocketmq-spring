@@ -19,9 +19,9 @@
         <constructor-arg ref="kryoSerializer" />
     </bean>
 
-    <bean id="defaultConsumer" class="org.jobshen.mq.rocketmq.consumer.SingletonMessageConsumer" init-method="init" destroy-method="destroy">
+    <bean id="singletonConsumer" class="org.jobshen.mq.rocketmq.consumer.SingletonMessageConsumer" init-method="init" destroy-method="destroy">
         <constructor-arg name="namesrv" value="127.0.0.1:9876" />
-        <constructor-arg name="consumerGroupName" value="TestGroup" />
+        <constructor-arg name="consumerGroupName" value="singleton" />
         <constructor-arg name="instanceName" value="TestConsumer" />
         <constructor-arg name="subscriptionTable">
             <map>
@@ -33,6 +33,17 @@
                         </bean>
                     </key>
                 </entry>
+                <!--更多的订阅添加entry节点即可-->
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="batchonsumer" class="org.jobshen.mq.rocketmq.consumer.BatchMessageConsumer" init-method="init" destroy-method="destroy">
+        <constructor-arg name="namesrv" value="127.0.0.1:9876" />
+        <constructor-arg name="consumerGroupName" value="batch" />
+        <constructor-arg name="instanceName" value="TestConsumer" />
+        <constructor-arg name="subscriptionTable">
+            <map>
                 <entry value-ref="batchPersonMessageListener">
                     <key>
                         <bean class="org.jobshen.mq.rocketmq.bean.Subscription">

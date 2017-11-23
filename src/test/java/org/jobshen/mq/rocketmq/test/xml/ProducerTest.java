@@ -19,8 +19,6 @@ package org.jobshen.mq.rocketmq.test.xml;
 
 import com.alibaba.fastjson.JSONObject;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -46,19 +44,18 @@ import lombok.extern.log4j.Log4j2;
 @ContextConfiguration(locations={"classpath:rocketmq-producer.xml"})
 @Log4j2
 public class ProducerTest {
-    
 
+	@Autowired
 	@Qualifier("personMessage")
 	private PersonMessage personMessage;
 
+	@Autowired
 	@Qualifier("personbatchMessage")
 	private PersonMessage personbatchMessage;
 
 	@Autowired
 	private DefaultProducer defaultProducer;
 
-	public static final String KEY = "MSG_SEND";
-	
 	@Test
 	public void testProducer() throws MQClientException, RemotingException, InterruptedException, MQBrokerException {
 		DefaultMQProducer producer = defaultProducer.getProducer();

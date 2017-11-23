@@ -25,6 +25,8 @@ import org.jobshen.mq.rocketmq.messagelisteners.AbstractBatchMessageListener;
 import org.jobshen.mq.rocketmq.serialize.RocketMqSerializer;
 import org.jobshen.mq.rocketmq.test.po.Person;
 
+import lombok.extern.log4j.Log4j2;
+
 /**
  * BatchPersonMessageListener Description:
  *
@@ -33,6 +35,7 @@ import org.jobshen.mq.rocketmq.test.po.Person;
  * @date 2017/11/22 23:33
  * @since JDK 1.8
  */
+@Log4j2
 public class BatchPersonMessageListener extends AbstractBatchMessageListener<Person> {
 
     public BatchPersonMessageListener(RocketMqSerializer serializer) {
@@ -41,6 +44,9 @@ public class BatchPersonMessageListener extends AbstractBatchMessageListener<Per
 
     @Override
     public boolean handleMessage(List<Person> list, List<MessageExt> messages, ConsumeContext context) throws Exception {
-        return false;
+        for (int i = 0; i < list.size(); i++) {
+            log.info("person : {}, ext : {}", list.get(i).toString(), messages.get(i));
+        }
+        return true;
     }
 }
